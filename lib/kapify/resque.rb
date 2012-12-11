@@ -1,0 +1,1 @@
+require 'kapify/resque/configuration'

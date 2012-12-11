@@ -1,0 +1,9 @@
+To create local resque configuration files call
+
+    rails generate kapify:resque [path]
+
+The default path is "config/deploy/templates". You can override it like so:
+
+    rails generate kapify:resque "config/templates"
+
+If you override templates path, don't forget to set "templates_path" variable in your deploy.rb

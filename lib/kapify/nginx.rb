@@ -1,0 +1,1 @@
+require 'kapify/nginx/configuration'

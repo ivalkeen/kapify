@@ -6,18 +6,22 @@ Provides several useful capistrano recipes, that can be used for deployment of R
   * set up logs rotation
 
 * Nginx
+
   * config site
   * reload
 
 * Postgtes
+
   * link database.yml from template
   * create pg user for application
 
 * Resque
+
   * create and register init script
   * start/stop/restart using init script
 
 * Unicorn (with zero downtime deployments with nginx)
+
   * create and register init script
   * start/stop/restart using init script
 

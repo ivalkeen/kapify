@@ -17,6 +17,8 @@ Add this line to your `deploy.rb`
 
     require 'kapify/resque'
 
+Next, add role `resque_worker` to the server which you want resque workers to be started on.
+
 Note, that following capistrano variables should be defined:
 
     application

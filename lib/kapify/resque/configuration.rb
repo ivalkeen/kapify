@@ -11,7 +11,7 @@ Capistrano::Configuration.instance.load do
   namespace :kapify do
     namespace :resque do
       desc "Setup Resque initializer and app configuration"
-      task :setup, roles: :app do
+      task :setup, roles: :resque_worker do
         run "mkdir -p #{shared_path}/config"
         kapify_template "resque", "resque_init.erb", "/tmp/resque_init"
         run "chmod +x /tmp/resque_init"

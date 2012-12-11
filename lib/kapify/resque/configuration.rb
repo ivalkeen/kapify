@@ -23,7 +23,7 @@ Capistrano::Configuration.instance.load do
 
       %w[start stop restart].each do |command|
         desc "#{command} resque"
-        task command, roles: :app do
+        task command, roles: :resque_worker do
           run "service resque_#{application} #{command}"
         end
 

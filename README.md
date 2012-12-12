@@ -3,24 +3,24 @@
 Provides several useful capistrano recipes, that can be used for deployment of Ruby on Rails applications with rbenv.
 
 * [Logrotate](https://github.com/ivalkeen/kapify/tree/master/lib/kapify/logrotate)
-  + set up logs rotation
+    + set up logs rotation
 
 * [Nginx](https://github.com/ivalkeen/kapify/tree/master/lib/kapify/nginx)
-  + config site
-  + reload
+    + config site
+    + reload
 
 * [PostgreSQL](https://github.com/ivalkeen/kapify/tree/master/lib/kapify/pg)
-  + link database.yml from template
-  + create pg user for application
+    + link database.yml from template
+    + create pg user for application
 
 * [Resque](https://github.com/ivalkeen/kapify/tree/master/lib/kapify/resque)
-  + create and register init script
-  + start/stop/restart using init script
+    + create and register init script
+    + start/stop/restart using init script
 
 * [Unicorn](https://github.com/ivalkeen/kapify/tree/master/lib/kapify/unicorn)
   (with zero downtime deployments with nginx)
-  + create and register init script
-  + start/stop/restart using init script
+    + create and register init script
+    + start/stop/restart using init script
 
 
 ## Installation

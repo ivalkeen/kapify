@@ -45,6 +45,14 @@ You can also provide path, where to generate templates:
 
     rails g kapify:logrotate config/templates
 
+In this case, don't forget to set `templates_path` varibale:
+
+```ruby
+# path to customized templates (see below for details)
+# default value: "config/deploy/templates"
+set :templates_path, "config/deploy/templates"
+```
+
 For example, if you also use nginx and unicorn, you want to notify them about rotation.
 In this case, your template file could look like this:
 

@@ -33,7 +33,7 @@ local options
 
 program=$BUNDLE
 options="exec rake $TASK"
-options="$options RACK_ENV=$ENVIRONMENT QUEUES=$QUEUES"
+options="$options RACK_ENV=$ENVIRONMENT QUEUES=$QUEUES NEWRELIC_DISPATCHER=resque"
 
 for i in $(seq 1 $COUNT); do
 pidfile=$(printf "$PIDFILE" $i)

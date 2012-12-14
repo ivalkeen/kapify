@@ -3,6 +3,28 @@ Capistrano::Configuration.instance.load do
     set(name, *args, &block) unless exists?(name)
   end
 
+  def template(from, to)
+    erb = File.read(File.expand_path("../templates/#{from}", __FILE__))
+    put ERB.new(erb).result(binding), to
+  end
+
+  def close_sessions
+    sessions.values.each { |session| session.close }
+    sessions.clear
+  end
+
+  def as_user(user_name)
+    old_user = user
+    set :user, user_name
+    close_sessions
+    begin
+      yield
+    ensure
+      set :user, old_user
+      close_sessions
+    end
+  end
+
   set_default(:templates_path, "config/deploy/templates")
 
   def kapify_template(generator, template_name, target)

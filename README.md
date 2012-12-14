@@ -41,6 +41,17 @@ All recipes could be customized using variables.
 Also there are template generators for deep customization.
 See README for recipes for details.
 
+Also contains several helpers (some of them are based on Ryan Bate's screencast):
+
+```ruby
+as_user
+close_session
+set_default
+template
+
+```
+
+If you want to use these helpers, require `kapify/base` in your `Capfile` or `deploy.rb`
 
 ## Contributing
 

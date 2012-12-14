@@ -3,11 +3,6 @@ Capistrano::Configuration.instance.load do
     set(name, *args, &block) unless exists?(name)
   end
 
-  def template(from, to)
-    erb = File.read(File.expand_path("../templates/#{from}", __FILE__))
-    put ERB.new(erb).result(binding), to
-  end
-
   def close_sessions
     sessions.values.each { |session| session.close }
     sessions.clear

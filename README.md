@@ -46,8 +46,8 @@ Also contains several helpers (some of them are based on Ryan Bate's screencast)
 ```ruby
 as_user
 close_session
+kapify_template
 set_default
-template
 
 ```
 

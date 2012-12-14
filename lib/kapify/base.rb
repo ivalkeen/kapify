@@ -22,6 +22,11 @@ Capistrano::Configuration.instance.load do
 
   set_default(:templates_path, "config/deploy/templates")
 
+  def template(from, to)
+    erb = File.read(File.expand_path("#{templates_path}/#{from}", __FILE__))
+    put ERB.new(erb).result(binding), to
+  end
+
   def kapify_template(generator, template_name, target)
     config_file = "#{templates_path}/#{template_name}"
     # if no customized file, proceed with default

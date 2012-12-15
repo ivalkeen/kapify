@@ -20,6 +20,11 @@ Capistrano::Configuration.instance.load do
     end
   end
 
+  def run_interactively(command, server=nil)
+    server ||= find_servers_for_task(current_task).first
+    exec %Q(ssh #{user}@#{server.host} -p #{port} -t '#{command}')
+  end
+
   set_default(:templates_path, "#{Dir.pwd}/config/deploy/templates")
 
   def template(from, to)

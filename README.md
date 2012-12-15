@@ -46,6 +46,7 @@ Also contains several helpers (some of them are based on Ryan Bate's screencast)
 ```ruby
 as_user
 close_session
+run_interactively
 set_default
 template
 

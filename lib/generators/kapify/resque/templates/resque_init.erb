@@ -27,7 +27,7 @@ TASK="<%= resque_task %>"
 PIDFILE="$ROOT/tmp/pids/resque_worker.%d.pid"
 RBENV="<%= rbenv_install_path %>"
 PATH="$RBENV/shims:$RBENV/bin:$PATH"
-BUNDLE="bundle"
+BUNDLE="$RBENV/shims/bundle"
 
 chdir $ROOT
 

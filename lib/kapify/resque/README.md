@@ -60,6 +60,10 @@ you can run any of these tasks to update configuration.
 You can customize resque configs using capistrano variables:
 
 ```ruby
+# path to the bundle command
+# default value: /usr/local/rbenv (for globally installed rbenv)
+set :rbenv_install_path, "~/.rbenv"
+
 # user name to run resque
 # default value: `user` (user varibale defined in your `deploy.rb`)
 set :resque_user, "user"
@@ -71,10 +75,6 @@ set :resque_workers, 4
 # name of resque workers queue
 # default value: *
 set :resque_queue, "*"
-
-# path to the bundle command
-# default value: /usr/local/rbenv/shims/bundle (for globally installed rbenv)
-set :resque_bundle, "/usr/bin/bundle"
 
 # name of rake task to run resque worker
 # default value: "environment resque:work"

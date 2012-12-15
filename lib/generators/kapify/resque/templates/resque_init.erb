@@ -11,6 +11,7 @@
 # Description:		resque - a Redis-backed Ruby library for creating background jobs, placing those jobs on multiple queues, and processing them later.
 ### END INIT INFO
 
+set -u
 set -e
 
 . /lib/lsb/init-functions
@@ -24,8 +25,11 @@ QUEUES="<%= resque_queue %>"
 COUNT=<%= resque_workers %>
 TASK="<%= resque_task %>"
 PIDFILE="$ROOT/tmp/pids/resque_worker.%d.pid"
+RBENV="<%= rbenv_install_path %>"
+PATH="$RBENV/shims:$RBENV/bin:$PATH"
+BUNDLE="bundle"
 
-BUNDLE="<%= resque_bundle %>"
+chdir $ROOT
 
 start() {
 local program

@@ -6,7 +6,7 @@ Capistrano::Configuration.instance.load do
   set_default(:nginx_use_ssl, false)
   set_default(:nginx_ssl_certificate) { "#{nginx_server_name}.crt" }
   set_default(:nginx_ssl_certificate_key) { "#{nginx_server_name}.key" }
-  set_default(:nginx_ssl_certificate_local_path) {Capistrano::CLI.ui.ask "Local path to ssl certificate: "}
+  set_default(:nginx_ssl_certificate_local_path) {Capistrano::CLI.ui.ask "Local path to ssl certificate (leave blank to skip): "}
   set_default(:nginx_ssl_certificate_key_local_path) {Capistrano::CLI.ui.ask "Local path to ssl certificate key: "}
 
   namespace :kapify do
@@ -17,7 +17,7 @@ Capistrano::Configuration.instance.load do
         run "#{sudo} mv /tmp/#{application} /etc/nginx/sites-available/#{application}"
         run "#{sudo} ln -fs /etc/nginx/sites-available/#{application} /etc/nginx/sites-enabled/#{application}"
 
-        if nginx_use_ssl
+        if nginx_use_ssl && !nginx_ssl_certificate_local_path.empty?
           put File.read(nginx_ssl_certificate_local_path), "/tmp/#{nginx_ssl_certificate}"
           put File.read(nginx_ssl_certificate_key_local_path), "/tmp/#{nginx_ssl_certificate_key}"
 

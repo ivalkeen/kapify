@@ -5,7 +5,7 @@ stdout_path "<%= unicorn_log %>"
 
 listen "/tmp/<%= application %>.sock"
 worker_processes <%= unicorn_workers %>
-timeout 60
+timeout 90
 
 preload_app true
 

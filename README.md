@@ -23,7 +23,7 @@ Provides several useful capistrano recipes, that can be used for deployment of R
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'kapify', group: :development, require: false
+gem 'kapify', group: :development
 ```
 
 And then execute:

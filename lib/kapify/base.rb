@@ -28,7 +28,7 @@ Capistrano::Configuration.instance.load do
   set_default(:templates_path, "#{Dir.pwd}/config/deploy/templates")
 
   def template(from, to)
-    erb = File.read(File.expand_path("#{Dir.pwd}/#{templates_path}/#{from}"))
+    erb = File.read(File.expand_path("#{templates_path}/#{from}"))
     put ERB.new(erb).result(binding), to
   end
 

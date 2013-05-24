@@ -20,7 +20,7 @@ NAME="<%= application %>"
 ROOT=<%= current_path %>
 USER="<%= resque_user %>"
 GROUP="<%= resque_user %>"
-ENVIRONMENT="production"
+ENVIRONMENT="<%= rails_env %>"
 QUEUES="<%= resque_queue %>"
 COUNT=<%= resque_workers %>
 TASK="<%= resque_task %>"

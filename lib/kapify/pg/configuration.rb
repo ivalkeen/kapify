@@ -4,9 +4,9 @@ require 'kapify/base'
 Capistrano::Configuration.instance.load do
   set_default(:pg_host) { find_servers(roles: :pg)[0] || "localhost" }
   set_default(:pg_port, "5432")
-  set_default(:pg_database, application)
+  set_default(:pg_database) { application }
   set_default(:pg_pool, 5)
-  set_default(:pg_user, application)
+  set_default(:pg_user) { application }
   set_default(:pg_password) { Capistrano::CLI.password_prompt "PG password: " }
   set_default(:pg_create_db, true)
 

@@ -6,8 +6,8 @@ Capistrano::Configuration.instance.load do
   set_default(:nginx_use_ssl, false)
   set_default(:nginx_ssl_certificate) { "#{nginx_server_name}.crt" }
   set_default(:nginx_ssl_certificate_key) { "#{nginx_server_name}.key" }
-  set_default(:nginx_ssl_certificate_local_path) {Capistrano::CLI.ui.ask "Local path to ssl certificate (leave blank to skip): "}
-  set_default(:nginx_ssl_certificate_key_local_path) {Capistrano::CLI.ui.ask "Local path to ssl certificate key: "}
+  set_default(:nginx_ssl_certificate_local_path) { Capistrano::CLI.ui.ask "Local path to ssl certificate (leave blank to skip): " }
+  set_default(:nginx_ssl_certificate_key_local_path) { Capistrano::CLI.ui.ask "Local path to ssl certificate key: " }
 
   namespace :kapify do
     namespace :nginx do

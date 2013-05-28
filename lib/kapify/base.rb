@@ -41,4 +41,10 @@ Capistrano::Configuration.instance.load do
     put ERB.new(File.read(config_file)).result(binding), target
   end
 
+  def ask_with_default(prompt, default_value)
+    Capistrano::CLI.ui.ask(prompt) do |q|
+      q.default = default_value
+      q.answer_type = ->(res) { res.to_s }
+    end
+  end
 end

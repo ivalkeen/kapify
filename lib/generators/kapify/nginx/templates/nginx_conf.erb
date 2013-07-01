@@ -5,7 +5,8 @@ upstream <%= application %> {
 <% if nginx_use_ssl %>
 server {
   listen 80;
-  rewrite ^(.*) https://$host$1 permanent;
+  server_name <%= nginx_server_name %>;
+  rewrite ^(.*) https://$server_name$1 permanent;
 }
 <% end %>
 

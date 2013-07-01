@@ -5,6 +5,7 @@ Capistrano::Configuration.instance.load do
   set_default(:resque_user) { user }
   set_default(:resque_workers) { 2 }
   set_default(:resque_queue) { "*" }
+  set_default(:resque_interval) { 5 }
   set_default(:resque_task) { "environment resque:work" }
   set_default(:rbenv_install_path) { "/usr/local/rbenv" }
 

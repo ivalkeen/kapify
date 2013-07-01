@@ -22,6 +22,7 @@ USER="<%= resque_user %>"
 GROUP="<%= resque_user %>"
 ENVIRONMENT="<%= rails_env %>"
 QUEUES="<%= resque_queue %>"
+INTERVAL="<%= resque_interval %>"
 COUNT=<%= resque_workers %>
 TASK="<%= resque_task %>"
 PIDFILE="$ROOT/tmp/pids/resque_worker.%d.pid"
@@ -37,7 +38,7 @@ local options
 
 program=$BUNDLE
 options="exec rake $TASK"
-options="$options RACK_ENV=$ENVIRONMENT QUEUES=$QUEUES NEWRELIC_DISPATCHER=resque"
+options="$options RACK_ENV=$ENVIRONMENT INTERVAL=$INTERVAL QUEUES=$QUEUES NEWRELIC_DISPATCHER=resque"
 
 for i in $(seq 1 $COUNT); do
 pidfile=$(printf "$PIDFILE" $i)

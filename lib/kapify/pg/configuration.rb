@@ -34,7 +34,7 @@ Capistrano::Configuration.instance.load do
       end
 
       desc "Generate the database.yml configuration file."
-      task :setup, roles: :app do
+      task :setup, roles: [:app, :resque_worker] do
         run "mkdir -p #{shared_path}/config"
         kapify_template("pg", "database.yml.erb", "#{shared_path}/config/database.yml")
       end
@@ -42,7 +42,7 @@ Capistrano::Configuration.instance.load do
       after "deploy:setup", "kapify:pg:setup"
 
       desc "Symlink the database.yml file into latest release"
-      task :symlink, roles: :app do
+      task :symlink, roles: [:app, :resque_worker] do
         run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
       end
 

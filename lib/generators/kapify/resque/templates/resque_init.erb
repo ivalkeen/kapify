@@ -58,7 +58,7 @@ local pidfile
 for i in $(seq 1 $COUNT); do
 pidfile=$(printf "$PIDFILE" $i)
 
-if start-stop-daemon --stop --quiet --oknodo --pidfile $pidfile
+if start-stop-daemon --stop --signal=QUIT --quiet --oknodo --pidfile $pidfile
 then
 log_daemon_msg "Stopped Resque worker #$i for $NAME"
 rm -f $pidfile

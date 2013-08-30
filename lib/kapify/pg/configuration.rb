@@ -17,7 +17,7 @@ Capistrano::Configuration.instance.load do
         if find_servers(roles: :pg).size > 0
           pg_params = "-p #{pg_port}"
           check_user = %Q[#{sudo} -u postgres psql #{pg_params} postgres -c "select * from pg_user where usename='#{pg_user}'" | grep -c '#{pg_user}']
-          add_user = %Q[#{sudo} -u postgres psql #{pg_params} -c "create user #{pg_user}"]
+          add_user = %Q[#{sudo} su postgres -c "createuser -SREd #{pg_params} #{pg_user}"]
           run "#{check_user} || #{add_user}"
           run %Q{#{sudo} -u postgres psql #{pg_params} -c "alter user #{pg_user} with password '#{pg_password}'" }
         end

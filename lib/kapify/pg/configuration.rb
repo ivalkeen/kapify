@@ -14,24 +14,26 @@ Capistrano::Configuration.instance.load do
     namespace :pg do
       desc "Create user for application"
       task :create_user, roles: :pg do
-        pg_params = "-p #{pg_port}"
-        check_user = %Q[#{sudo} -u postgres psql #{pg_params} postgres -c "select * from pg_user where usename='#{pg_user}'" | grep -c '#{pg_user}']
-        add_user = %Q[#{sudo} -u postgres psql #{pg_params} -c "create user #{pg_user}"]
-        run "#{check_user} || #{add_user}"
-        run %Q{#{sudo} -u postgres psql #{pg_params} -c "alter user #{pg_user} with password '#{pg_password}'" }
+        if find_servers(roles: :pg).size > 0
+          pg_params = "-p #{pg_port}"
+          check_user = %Q[#{sudo} -u postgres psql #{pg_params} postgres -c "select * from pg_user where usename='#{pg_user}'" | grep -c '#{pg_user}']
+          add_user = %Q[#{sudo} -u postgres psql #{pg_params} -c "create user #{pg_user}"]
+          run "#{check_user} || #{add_user}"
+          run %Q{#{sudo} -u postgres psql #{pg_params} -c "alter user #{pg_user} with password '#{pg_password}'" }
+        end
       end
 
       desc "Create database for application"
       task :create_database, roles: :pg do
-        if pg_create_db
-          run %Q{#{sudo} -u postgres psql -c "create database #{pg_database} owner #{pg_user};"}
+        if find_servers(roles: :pg).size > 0
+          if pg_create_db
+            run %Q{#{sudo} -u postgres psql -c "create database #{pg_database} owner #{pg_user};"}
+          end
         end
       end
 
-      if find_servers(roles: :pg).size > 0
-        after "deploy:setup", "kapify:pg:create_user"
-        after "deploy:setup", "kapify:pg:create_database"
-      end
+      after "deploy:setup", "kapify:pg:create_user"
+      after "deploy:setup", "kapify:pg:create_database"
 
       desc "Generate the database.yml configuration file."
       task :setup, roles: [:app, :resque_worker] do

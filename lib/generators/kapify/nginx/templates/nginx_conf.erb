@@ -86,4 +86,10 @@ server {
   location ~ \.(php|html)$ {
     return 405;
   }
+
+  include mime.types;
+
+  types {
+    application/font-woff woff;
+  }
 }

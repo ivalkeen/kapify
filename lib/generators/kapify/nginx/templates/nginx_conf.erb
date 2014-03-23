@@ -33,8 +33,6 @@ server {
 <% end %>
     proxy_pass http://<%= application %>;
     # limit_req zone=one;
-    access_log <%= shared_path %>/log/nginx.access.log;
-    error_log <%= shared_path %>/log/nginx.error.log;
   }
 
   location ~ ^/(assets|images|javascripts|stylesheets|swfs|system)/ {
@@ -49,6 +47,9 @@ server {
     open_file_cache_errors on;
     break;
   }
+
+  access_log <%= shared_path %>/log/nginx.access.log;
+  error_log <%= shared_path %>/log/nginx.error.log;
 
   client_max_body_size 4G;
 
